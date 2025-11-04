@@ -124,7 +124,3 @@ print("With FOV")
 player_visible = player1.area_fov_visible([player2, player3, player4, player5])
 for player in player_visible:
     print(player.name)
-
-car = Car("Porsche", 150000, [AbsOption(), AutoOption()])
-
-print(car.get_total())
