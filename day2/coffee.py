@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
-from unittest import case
-
 
 class Drink(ABC):
     size = 0
+    price_s = 0
+    price_m = 0
+    price_l = 0
+    choice = 0
     @abstractmethod
     def get_description(self) -> str:
         pass
@@ -12,13 +14,7 @@ class Drink(ABC):
     def get_price(self) -> float:
         pass
 
-
-class Coffee(Drink):
-    def __init__(self, choice : int):
-        self.name = "Coffee"
-        self.price_s = 1
-        self.price_m = 1.5
-        self.price_l = 2
+    def set_choice(self, choice : int):
         match choice:
             case 1:
                 self.choice = self.price_s
@@ -29,6 +25,14 @@ class Coffee(Drink):
             case 3:
                 self.choice = self.price_l
                 self.size = 3
+
+class Coffee(Drink):
+    def __init__(self, choice : int):
+        self.name = "Coffee"
+        self.price_s = 1
+        self.price_m = 1.5
+        self.price_l = 2
+        self.set_choice(choice)
 
     def get_description(self) -> str:
         return "An Coffee "
@@ -42,16 +46,7 @@ class Thea(Drink):
         self.price_s = 2
         self.price_m = 2.5
         self.price_l = 3
-        match choice:
-            case 1:
-                self.choice = self.price_s
-                self.size = 1
-            case 2:
-                self.choice = self.price_m
-                self.size = 2
-            case 3:
-                self.choice = self.price_l
-                self.size = 3
+        self.set_choice(choice)
 
     def get_description(self) -> str:
         return "An Thea "
@@ -65,16 +60,7 @@ class Mocha(Drink):
         self.price_s = 5
         self.price_m = 6.5
         self.price_l = 7.5
-        match choice:
-            case 1:
-                self.choice = self.price_s
-                self.size = 1
-            case 2:
-                self.choice = self.price_m
-                self.size = 2
-            case 3:
-                self.choice = self.price_l
-                self.size = 3
+        self.set_choice(choice)
 
     def get_description(self) -> str:
         return "An Mocha "
@@ -88,16 +74,7 @@ class Chocolate(Drink):
         self.price_s = 3
         self.price_m = 4
         self.price_l = 5
-        match choice:
-            case 1:
-                self.choice = self.price_s
-                self.size = 1
-            case 2:
-                self.choice = self.price_m
-                self.size = 2
-            case 3:
-                self.choice = self.price_l
-                self.size = 3
+        self.set_choice(choice)
 
     def get_description(self) -> str:
         return "An Chocolate "
