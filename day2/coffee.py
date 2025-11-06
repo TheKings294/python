@@ -26,6 +26,7 @@ class Drink(ABC):
                 self.choice = self.price_l
                 self.size = 3
 
+
 class Coffee(Drink):
     def __init__(self, choice : int):
         self.name = "Coffee"
@@ -39,6 +40,7 @@ class Coffee(Drink):
 
     def get_price(self) -> float:
         return self.choice
+
 
 class Thea(Drink):
     def __init__(self, choice : int):
@@ -54,6 +56,7 @@ class Thea(Drink):
     def get_price(self) -> float:
         return self.choice
 
+
 class Mocha(Drink):
     def __init__(self, choice : int):
         self.name = "Mocha"
@@ -67,6 +70,7 @@ class Mocha(Drink):
 
     def get_price(self) -> float:
         return self.choice
+
 
 class Chocolate(Drink):
     def __init__(self, choice : int):
@@ -83,6 +87,7 @@ class Chocolate(Drink):
         return self.choice
 
 
+
 class DrinkDecorator(Drink):
     def __init__(self, drink : Drink):
         self._drink = drink
@@ -93,6 +98,7 @@ class DrinkDecorator(Drink):
     def get_description(self):
         return self._drink.get_description()
 
+
 class CaramelDecorator(DrinkDecorator):
     def get_price(self):
         return self._drink.get_price() + 0.5
@@ -100,12 +106,14 @@ class CaramelDecorator(DrinkDecorator):
     def get_description(self):
         return self._drink.get_description() + "Caramel"
 
+
 class ChocolateDecorator(DrinkDecorator):
     def get_price(self):
         return self._drink.get_price() + 1
 
     def get_description(self):
         return self._drink.get_description() + "Chocolate"
+
 
 class MochaDecorator(DrinkDecorator):
     def get_price(self):
@@ -137,6 +145,7 @@ class WhippedCreamDecorator(DrinkDecorator):
                 return self._drink.get_description() + "Large whipped cream"
             case _:
                 return self._drink.get_description() + "Whipped cream"
+
 
 class Order:
     def __init__(self, drinks : list[DrinkDecorator]):

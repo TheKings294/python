@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Traducteur - MonApp{% endblock %}
+
+{% block content %}
+<section class="flex flex-col items-center justify-center min-h-[80vh] bg-gray-50 px-4">
+  <h1 class="text-4xl font-bold text-blue-600 mb-8">Traducteur Simple 🌐</h1>
+
+  <form action="{{ url_for('translate') }}" method="POST" class="w-full max-w-xl bg-white p-6 rounded-2xl shadow-md space-y-4">
+    <div>
+      <label for="text" class="block font-medium mb-2">Texte à traduire</label>
+      <textarea id="text" name="text" rows="4" required
+                class="w-full border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Entrez votre texte ici...">{{ request.form.text or '' }}</textarea>
+    </div>
+
+    <div class="flex space-x-4">
+      <div class="flex-1">
+        <label for="source_lang" class="block font-medium mb-2">Langue source</label>
+        <select id="source_lang" name="source_lang" class="w-full border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="fr" {% if request.form.source_lang == 'fr' %}selected{% endif %}>Français</option>
+          <!--<option value="en" {% if request.form.source_lang == 'en' %}selected{% endif %}>Anglais</option>
+          <option value="es" {% if request.form.source_lang == 'es' %}selected{% endif %}>Espagnol</option>
+          <option value="de" {% if request.form.source_lang == 'de' %}selected{% endif %}>Allemand</option>-->
+        </select>
+      </div>
+
+      <div class="flex-1">
+        <label for="target_lang" class="block font-medium mb-2">Langue cible</label>
+        <select id="target_lang" name="target_lang" class="w-full border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="en" {% if request.form.target_lang == 'en' %}selected{% endif %}>Anglais</option>
+          <option value="es" {% if request.form.target_lang == 'es' %}selected{% endif %}>Espagnol</option>
+          <option value="de" {% if request.form.target_lang == 'de' %}selected{% endif %}>Allemand</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+      Traduire
+    </button>
+  </form>
+
+  {% if translated_text %}
+    <div class="mt-8 w-full max-w-xl bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Texte traduit :</h2>
+      <p class="text-gray-700">{{ translated_text }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

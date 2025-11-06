@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil - MonApp{% endblock %}
+
+{% block content %}
+<section class="text-center py-10">
+  <h1 class="text-4xl font-bold mb-4">Bienvenue sur <span class="text-blue-600">MonApp</span></h1>
+  <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+    Une application Flask moderne construite avec <strong>Python</strong> et <strong>Tailwind CSS</strong>.
+    Simple, rapide et élégante.
+  </p>
+</section>
+
+<!-- Exemple de section "features" -->
+<section class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="p-6 bg-white rounded-xl shadow">
+    <h2 class="text-lg font-semibold mb-2">🚀 Rapide</h2>
+    <p class="text-gray-600">Flask est un framework léger qui te permet de développer rapidement des applications web performantes.</p>
+  </div>
+
+  <div class="p-6 bg-white rounded-xl shadow">
+    <h2 class="text-lg font-semibold mb-2">💡 Flexible</h2>
+    <p class="text-gray-600">Tu choisis tes outils : ORM, front-end, templates... Flask s’adapte à ton projet.</p>
+  </div>
+
+  <div class="p-6 bg-white rounded-xl shadow">
+    <h2 class="text-lg font-semibold mb-2">🎨 Stylé</h2>
+    <p class="text-gray-600">Grâce à Tailwind, tu peux créer des interfaces modernes et responsive en un rien de temps.</p>
+  </div>
+</section>
+
+<img src="https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2019/05/windows-xp-hd.jpg?resize=1200&key=3f11a5a8&watermark"
+     alt="Photo de profil"
+     class="mx-auto mt-8 w-40 h-40 object-cover rounded-full shadow-lg" />
+{% endblock %}

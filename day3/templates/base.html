@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="{% block meta_description %}Une application Flask{% endblock %}" />
+
+  <title>{% block title %}Mon app Flask{% endblock %}</title>
+
+  {# Tailwind via CDN (pratique pour dev). Remplacer par build Tailwind en prod. #}
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  {# Optional: personnalisation Tailwind (ex : variables) #}
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+
+  {# Fichier CSS statique si besoin (ex: pour surcharger tailwind) #}
+  <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />-->
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="{{ url_for('index') }}" class="text-2xl font-bold text-blue-600">
+      MonApp
+    </a>
+
+    <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <div id="menu" class="hidden md:flex space-x-6 text-gray-700 font-medium">
+      <a href="{{ url_for('index') }}" class="hover:text-blue-600">Accueil</a>
+      <a href="{{ url_for('about') }}" class="hover:text-blue-600">À propos</a>
+      <a href="{{ url_for('contact') }}" class="hover:text-blue-600">Contact</a>
+        <a href="{{ url_for('loto') }}" class="hover:text-blue-600">Loto</a>
+        <a href="{{ url_for('books') }}" class="hover:text-blue-600">Books</a>
+        <a href="{{ url_for('translate') }}" class="hover:text-blue-600">Translate</a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+    <div class="flex flex-col items-center space-y-2 py-3 text-gray-700 font-medium">
+      <a href="{{ url_for('index') }}" class="hover:text-blue-600">Accueil</a>
+      <a href="{{ url_for('about') }}" class="hover:text-blue-600">À propos</a>
+      <a href="{{ url_for('contact') }}" class="hover:text-blue-600">Contact</a>
+        <a href="{{ url_for('loto') }}" class="hover:text-blue-600">Loto</a>
+        <a href="{{ url_for('books') }}" class="hover:text-blue-600">Books</a>
+        <a href="{{ url_for('translate') }}" class="hover:text-blue-600">Translate</a>
+    </div>
+  </div>
+</header>
+  <main class="flex-1 container mx-auto px-4 py-6 w-full">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+<footer class="bg-white border-t mt-10">
+  <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600">
+    <p>© {{ current_year if current_year is defined else "2025" }} MonApp — Tous droits réservés</p>
+
+    <div class="flex space-x-4 mt-2 md:mt-0">
+      <a href="{{ url_for('about') }}" class="hover:underline">À propos</a>
+      <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+      <a href="https://github.com/TheKings294" target="_blank" class="hover:underline">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
