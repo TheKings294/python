@@ -13,6 +13,8 @@ clock = pygame.time.Clock()
 tileSet = TileSet('assets/tiles.png')
 tileMap = TileMap(tileSet)
 
+image = pygame.image.load('assets/tiles.png').convert()
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -26,7 +28,7 @@ while True:
 
     screen.fill((0, 0, 0))
 
-    tileMap.render()
+    screen.blit(image, (0, 0))
 
     pygame.display.flip()
     clock.tick(60)
